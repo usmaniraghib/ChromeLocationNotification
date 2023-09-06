@@ -4,20 +4,25 @@ package com.raghib.notification;
  * REFERENCE
  * https://www.youtube.com/watch?v=BmEPwIoBh-I&ab_channel=QAFox
  */
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import io.github.bonigarcia.wdm.WebDriverManager;
+
+import com.raghib.selenium.BaseClass;
+import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 
-public class NotificationChrome {
+public class NotificationChrome extends BaseClass {
 
-	public static void main(String args[]) {
-		WebDriverManager.chromedriver().setup();
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--disable-notifications");
-		WebDriver driver = new ChromeDriver(options);
-		// WebDriver driver = new ChromeDriver();
+	public static WebDriver driver;
+	public static String browserName = "chrome";
+	public static String browserVersion = "116";
+	
+	public static String url = "https://www.justdial.com/";
+	
+	public static void main(String[] args) {
+		// Chrome Browser
+		driver = BaseClass.getDriver(browserName, browserVersion);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 		driver.manage().window().maximize();
-		driver.get("https://www.justdial.com/");
+		driver.get(url);
+		//BaseClass.quitDriver();
 	}
 }
